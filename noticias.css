@@ -1,0 +1,76 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+.contenedor {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "menu menu"
+        "portada portada"
+        "local internacional"
+        "deportes cultura"
+        "footer footer";
+    gap: 10px;
+    padding: 10px;
+}
+.nota {
+    background: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-left: 5px solid #333;
+}
+
+.nota img {
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.nota a {
+    display: block;
+    margin-top: 5px;
+    color: blue;
+}
+
+.header {
+    grid-area: header;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.menu {
+    grid-area: menu;
+    background: #555;
+    text-align: center;
+    padding: 10px;
+}
+
+.menu a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+section {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.portada { grid-area: portada; }
+.local { grid-area: local; }
+.internacional { grid-area: internacional; }
+.deportes { grid-area: deportes; }
+.cultura { grid-area: cultura; }
+
+.footer {
+    grid-area: footer;
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

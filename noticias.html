@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Noticias</title>
+    <link rel="stylesheet" href="noticias.css">
+</head>
+<body>
+
+<div class="contenedor">
+
+    <header class="header">
+        <h1>Noticias</h1>
+    </header>
+
+    <nav class="menu">
+        <a href="#" onclick="cargarNoticias('general')">Portada</a>
+        <a href="#" onclick="cargarNoticias('mexico')">Local</a>
+        <a href="#" onclick="cargarNoticias('world')">Internacional</a>
+        <a href="#" onclick="cargarNoticias('sports')">Deportes</a>
+        <a href="#" onclick="cargarNoticias('culture')">Cultura</a>
+    </nav>
+
+    <section class="portada" id="noticias">
+        <h2>Noticias</h2>
+        <p>Cargando...</p>
+    </section>
+
+    <footer class="footer">
+        <p>© Noticias</p>
+        <p>Por Rojito</p>
+    </footer>
+
+</div>
+
+<script>
+async function cargarNoticias(busqueda) {
+
+    const contenedor = document.getElementById("noticias");
+    contenedor.innerHTML = "Cargando...";
+
+    try {
+        const url = `https://newsdata.io/api/1/latest?apikey=pub_9c75863ac72744d08f7781093c9f317d&q=${busqueda}&language=es`;
+
+        const respuesta = await fetch(url);
+        const data = await respuesta.json();
+
+        contenedor.innerHTML = "";
+
+        data.results.forEach(noticia => {
+            contenedor.innerHTML += `
+                <div class="nota">
+                    <h3>${noticia.title}</h3>
+                    <p>${noticia.description || ""}</p>
+                    ${noticia.image_url ? `<img src="${noticia.image_url}" width="100%">` : ""}
+                    <a href="${noticia.link}" target="_blank">Leer más</a>
+                    <small>${noticia.pubDate}</small>
+                </div>
+            `;
+        });
+
+    } catch (error) {
+        contenedor.innerHTML = "Error al cargar noticias";
+    }
+}
+cargarNoticias('general');
+</script>
+
+</body>
+</html>
